@@ -20,5 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Repository\UserRepositoryInterface: '@App\Repository\UserRepository'
+    App\Validators\UserValidatorInterface: '@App\Validators\UserValidatorInterface'
+    
+    App\UseCase\UserUsecase:
+        arguments:
+            $userRepository: '@App\Repository\UserRepositoryInterface'
+            $userValidator: '@App\Validators\UserValidatorInterface'
